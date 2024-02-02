@@ -21,6 +21,8 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(${SFML_LIB})
 
-set(BUDDI_TARGET_NAME Buddi_Test)
+set(BUDDI_ENGINE_TARGET_NAME Buddi_Engine)
+set(BUDDI_TEST_GAME_TARGET_NAME Buddi_Test_Game)
 
-add_subdirectory(Buddi)
+add_subdirectory(Buddi_Engine)
+add_subdirectory(Buddi_Test_Game)

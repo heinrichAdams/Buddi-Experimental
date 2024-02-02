@@ -1,0 +1,20 @@
+add_executable(${BUDDI_TEST_GAME_TARGET_NAME}
+	${CMAKE_CURRENT_SOURCE_DIR}/src/GameFramework/GameApplication.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/includes/GameFramework/GameApplication.h
+)
+
+target_include_directories(${BUDDI_TEST_GAME_TARGET_NAME} PUBLIC
+	${CMAKE_CURRENT_SOURCE_DIR}/includes
+)
+
+target_link_libraries(${BUDDI_TEST_GAME_TARGET_NAME} PUBLIC ${BUDDI_ENGINE_TARGET_NAME})
+
+
+add_custom_command(TARGET ${BUDDI_TEST_GAME_TARGET_NAME}
+	POST_BUILD
+	COMMAND
+	${CMAKE_COMMAND} -E copy_directory
+	$<TARGET_FILE_DIR:${BUDDI_ENGINE_TARGET_NAME}>
+	$<TARGET_FILE_DIR:${BUDDI_TEST_GAME_TARGET_NAME}>
+)
+
