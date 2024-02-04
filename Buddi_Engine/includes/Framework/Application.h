@@ -10,7 +10,8 @@ namespace Buddi_Base
 	class Application
 	{
 	public:
-		Application();
+		Application(unsigned int wWidth, unsigned int wHeight, 
+			const std::string& title, sf::Uint32 mode);
 		void Run();
 
 		template<typename SceneType>
@@ -36,6 +37,7 @@ namespace Buddi_Base
 	{
 		shared<SceneType> newScene{ new SceneType{this} };
 		_currentScene = newScene;
+		_currentScene->InternalSceneStart();
 		return newScene;
 	}
 }

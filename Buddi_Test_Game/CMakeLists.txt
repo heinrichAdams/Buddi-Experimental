@@ -1,6 +1,8 @@
 add_executable(${BUDDI_TEST_GAME_TARGET_NAME}
 	${CMAKE_CURRENT_SOURCE_DIR}/src/GameFramework/GameApplication.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/includes/GameFramework/GameApplication.h
+
+	${CMAKE_CURRENT_SOURCE_DIR}/Config.h
 )
 
 target_include_directories(${BUDDI_TEST_GAME_TARGET_NAME} PUBLIC
@@ -18,3 +20,13 @@ add_custom_command(TARGET ${BUDDI_TEST_GAME_TARGET_NAME}
 	$<TARGET_FILE_DIR:${BUDDI_TEST_GAME_TARGET_NAME}>
 )
 
+set(ASSET_PATH "assets")
+set(ASSET_SRC_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${ASSET_PATH}")
+
+add_custom_command(TARGET ${BUDDI_TEST_GAME_TARGET_NAME}
+	POST_BUILD
+	COMMAND
+	${CMAKE_COMMAND} -E copy_directory
+	${ASSET_SRC_DIRECTORY}
+	$<TARGET_FILE_DIR:${BUDDI_TEST_GAME_TARGET_NAME}>/${ASSET_PATH}
+)

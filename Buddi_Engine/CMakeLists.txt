@@ -8,6 +8,12 @@ add_library(${BUDDI_ENGINE_TARGET_NAME} STATIC
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Framework/Scene.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/includes/Framework/Scene.h
 
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Framework/Actor.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/includes/Framework/Actor.h
+
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Framework/Object.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/includes/Framework/Object.h
+
 	${CMAKE_CURRENT_SOURCE_DIR}/src/EntryPoint.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/includes/EntryPoint.h
 )
@@ -53,3 +59,4 @@ add_custom_command(TARGET ${BUDDI_ENGINE_TARGET_NAME}
 	$<TARGET_FILE:sfml-audio>
 	$<TARGET_FILE_DIR:${BUDDI_ENGINE_TARGET_NAME}>
 )
+

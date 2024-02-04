@@ -4,13 +4,15 @@
 
 namespace Buddi_Base
 {
-	Application::Application()
-		: _window{sf::VideoMode(720,940), "Buddi"},
-	      _targetFrameRate{ 60 },
-		  _tick{},
-		  _currentScene{nullptr}
+	Application::Application(unsigned int wWidth, unsigned int wHeight, 
+		const std::string& title, sf::Uint32 mode)
+		: _window{ sf::VideoMode(wWidth,wHeight), title, mode },
+		_targetFrameRate{ 60 },
+		_tick{},
+		_currentScene{ nullptr }
 	{
-		 
+
+
 	}
 
 	void Application::Run()
@@ -45,7 +47,6 @@ namespace Buddi_Base
 		Update(deltaTime);
 		if (_currentScene)
 		{
-			_currentScene->InternalSceneStart();
 			_currentScene->InternalUpdate(deltaTime);
 		}
 	}
@@ -65,11 +66,9 @@ namespace Buddi_Base
 
 	void Application::Render()
 	{
-		sf::RectangleShape rect{ sf::Vector2f{100,100} };
-		rect.setFillColor(sf::Color::Blue);
-		rect.setPosition(_window.getSize().x / 2.f,
-			_window.getSize().y / 2.f);
-
-		_window.draw(rect);
+		if (_currentScene)
+		{
+			_currentScene->Render(_window);
+		}
 	}
 }
